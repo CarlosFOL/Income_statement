@@ -1,5 +1,30 @@
 from company import Company
 
+def structure(company_data):
+    print(f"""
+    -------------------------------
+    Gross profit: ${company_data[0]}
+    Operative profit: ${company_data[1][0]}
+    Net profit: ${company_data[1][1]}
+    -------------------------------
+    Contribution margin: ${company_data[1][2]}
+    Break_even_point: {company_data[1][3]} units
+    Gain/dollar: ${company_data[1][4]}
+    -------------------------------
+            """)
+    print("GET IT!")
+
+def report(func):
+    def wrapper(company, scenario):
+        company_data = func(company, scenario)
+        if scenario == "A":
+            print(f"""[Actual scenary] By calculating income statement of "{company.name}" business...""")
+            structure(company_data)
+        elif scenario == "N":
+            print(f"""
+[New scenary] By calculating income statement of "{company.name}" business...""")
+            structure(company_data)
+    return wrapper
 
 def save_data(c1_data, scenario):
     with open(f"./{scenario}_scenary.txt","w", encoding="utf-8") as f:
