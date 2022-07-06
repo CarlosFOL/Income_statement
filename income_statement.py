@@ -1,8 +1,12 @@
 from company import Company
 
-def others_calculations():
-    pass
-
+def others_calculations(c1, gross_profit, admin_cost):
+    operative_profit = round(gross_profit - admin_cost, 2)
+    net_profit = round(operative_profit - (operative_profit*c1.taxes), 2)
+    c_m = c1.unit_income -c1.unit_cost
+    break_even_point = int(admin_cost/c_m)
+    gain_per_dollar = round(net_profit/(c1.sales*c1.unit_income), 2)
+    return operative_profit, net_profit, c_m, break_even_point, gain_per_dollar 
 
 def income_statement(c1, scenario):
     if scenario == "A":
