@@ -1,5 +1,25 @@
 from company import Company
 
+#Which one is better?
+def analysis(func):
+    def wrapper(*args, **kwargs):
+        print("""
+Compare actual scenary with new scenario...""")
+        scores = func(*args, **kwargs)
+        if scores[0] > scores[1]:
+            print(f"""
+-------------------------
+Actual scenario is better
+-------------------------""")
+        elif scores[0] < scores[1]:
+            print(f"""
+-----------------------
+New scenario is better
+-----------------------
+""")
+    return wrapper
+
+@analysis
 def check_scenarios(a_sc, n_sc):
     data_compare = {
         "Net profit": 1,
